@@ -5,6 +5,8 @@ import lejos.robotics.subsumption.Behavior;
 import lejos.nxt.LCD;
 import lejos.nxt.LightSensor;
 import lejos.nxt.SensorPort;
+import lejos.nxt.Sound;
+import java.io.File;
 
 public class JustMove
 {
@@ -52,6 +54,8 @@ public class JustMove
 		//Challenge4();
 		//Challenge5();
 		
+		// Secret assignment in the end
+		JustDance();
 		boticorn.stop();
 	}
 	
@@ -163,9 +167,20 @@ public class JustMove
 	{
 		moveForward(500);
 		boticorn.setTravelSpeed(800);
-		moveForward(2500);
+		moveForward(2700);
     }
 
+	public void JustDance()
+	{
+		while(true)
+		{
+		moveForward(300);
+		moveBack(300);
+		rotateLeft(360);
+		rotateRight(360);
+		}
+    }
+	
 	public void openClaws(int angle)
 	{
 		Motor.A.setSpeed(100);
