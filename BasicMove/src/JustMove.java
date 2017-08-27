@@ -36,11 +36,51 @@ public class JustMove
 	
 	public void run()
 	{
-		//openClaws(-15);
+		for(int ii=1; ii < 6; ii++)
+		{
+			int Result = runChallenge(ii);
+			System.out.println("Challenge " + Result + " completed!");
+			int nextChallenge = ii+1;
+			System.out.println("*** Press any button to continue to " + nextChallenge);
+			Button.waitForAnyPress();
+		}
+
+		// If everything goes to shit, do these one by one!
 		//Challenge1();
+		//Challenge2();
+		//Challenge3();
 		//Challenge4();
-		Challenge5();
+		//Challenge5();
+		
 		boticorn.stop();
+	}
+	
+	public int runChallenge(int challenge)
+	{
+		System.out.println("Challenge " + challenge + " started!");
+		switch(challenge)
+		{
+		case 1:
+			Challenge1();
+			break;
+		case 2:
+			Challenge2();
+			break;
+		case 3:
+			Challenge3();
+			break;
+		case 4:
+			Challenge4();
+			break;
+		case 5:
+			Challenge5();
+			break;
+			default:
+				System.out.println("Panic and cry! Wave hands 4 help!");	
+			break;
+		}
+		
+		return challenge;
 	}
 	
 	public void Challenge1()
@@ -48,7 +88,7 @@ public class JustMove
 		// Press the button and move to pick the cube
 		moveForward(950);
 		rotateLeft(75);
-		moveBack(225);
+		moveBack(235);
 		rotateLeft(30);
 		boticorn.setTravelSpeed(250);
 		moveForward(380);
@@ -62,8 +102,8 @@ public class JustMove
 		// Travel to drop the cube
 		moveBack(300);
 		rotateRight(45);
-		moveForward(710);
-		rotateRight(45);
+		moveForward(708);
+		rotateRight(50);
 		moveForward(750);
 		rotateRight(25);
 		moveForward(395);
@@ -74,88 +114,57 @@ public class JustMove
 		moveBack(150);
 		rotateRight(30);
 		moveForward(600);
-		rotateLeft(32);
+		rotateLeft(38);
 		moveForward(1500);
+	}
+	public void Challenge2()
+	{
+		// Press the button and move to pick the cube
+		moveForward(500);
+		rotateRight(90);
+		moveBack(140);
+		moveForward(140);
+		rotateRight(80);
+		moveForward(310);
+		rotateLeft(60);
+		Button.waitForAnyPress(3000);
+		moveForward(970);
+		Button.waitForAnyPress(4700);
+		boticorn.setTravelSpeed(650);
+		moveForward(390);
+		boticorn.setTravelSpeed(500);
+		rotateRight(45);
+		moveForward(700);
+	}
+	
+	public void Challenge3()
+	{
+		// Rinteestä lähtö
+		moveForward(1600);
+		Button.waitForAnyPress(5000);
+		moveForward(500);	
 	}
 
 	public void Challenge4()
 	{
-		moveForward(200);
-		rotateLeft(90);
-		moveForward(450);
-		rotateRight(80);
-		moveForward(340);
-		rotateRight(90);
-		moveForward(460);
-		rotateLeft(100);
-		moveForward(340);
-		rotateRight(90);
-		moveForward(340);
-		rotateLeft(45);
+		moveForward(240);
+		rotateLeft(78);
+		moveForward(485);
+		rotateRight(69);
+		moveForward(620);
+		rotateRight(58);
+		moveForward(850);
+		rotateLeft(32);
+		moveForward(400);
 	}
 
-	//Challenge5
-
-
+	// Challenge 5
 	public void Challenge5()
 	{
-		/*LightSensor light = new LightSensor(SensorPort.S3);
-		final int blackWhiteThreshold = 5;
-
-		final int forward = 1;
-		final int stop = 3;
-		final int power = 20;
-
-		// Use the light sensor as a reflection sensor
-		//light.setFloodlight(true);
-
-		while (! Button.ESCAPE.isDown())
-		{
-				if (light.readValue() > blackWhiteThreshold)
-				{
-					// On white, turn right
-					MotorPort.C.controlMotor(0,stop);
-					MotorPort.B.controlMotor(power, forward);
-					//Button.waitForAnyPress(30);
-				}
-				else
-				{
-					// On black, turn left
-					MotorPort.C.controlMotor(power, forward);
-					MotorPort.B.controlMotor(0,stop);
-				}
-				
-				try{
-					Thread.sleep(10);
-				}catch(Exception e){}
-		}*/
-		
-		int min = 30;
-		int max = 54;
-		int readLight = 0;
-		int Mspeed = 80;
-		int Mspeed2 = 15;
-		
-		LightSensor ls = new LightSensor(SensorPort.S3);
-	       
-	    while (! Button.ESCAPE.isDown()) {
-	    	Motor.C.forward();
-	        Motor.B.forward();
-	           
-	           readLight = ls.readValue();
-	           if (readLight < min){
-	        	   readLight = min+1;
-	           }
-
-	           if (max < readLight){
-	        	   readLight = max-1;
-	           }
-	   
-	           Motor.B.setSpeed(Mspeed + (Mspeed2 * (readLight - min)));
-	           Motor.C.setSpeed(Mspeed + (Mspeed2 * (max - readLight)));
-	           
-	       }
-	   }
+		moveForward(500);
+		boticorn.setTravelSpeed(800);
+		moveForward(2500);
+    }
 
 	public void openClaws(int angle)
 	{
